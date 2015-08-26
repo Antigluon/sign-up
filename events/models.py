@@ -1,3 +1,16 @@
 from django.db import models
+from django.contrib.auth.models import User
 
-# Create your models here.
+class Event(models.Model):
+    date = models.DateTimeField("Date of Event")
+    place = models.CharField(max_length = 1000)
+    name = models.CharField(max_length = 255)
+    desc = models.CharField(max_length = 10000, null = True)
+    pub_date = models.DateTimeField("Date when people can sign up")
+    signed_up = models.ManyToManyField(User)
+    
+    def __str__(self):
+        return str(self.name)
+    
+    
+    
