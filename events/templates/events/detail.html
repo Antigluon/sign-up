@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %} View Event {% endblock %}
+{% block content %}
+<ul>
+    <li>{{event.name}}</li>
+    <li>{{event.place}}</li>
+    <li>{{event.date|date}} at {{event.date|time}}</li>
+</ul>
+{% endblock %}

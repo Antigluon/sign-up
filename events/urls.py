@@ -4,5 +4,5 @@ from events import views
 
 urlpatterns = patterns('',
     url(r'^$', views.index, name='index'),
-    url(r'^bob/$', views.index, name='indexbob'),
+    url(r'^detail/(?P<pk>[0-9]+)/$', views.DetailView.as_view(), name='detail'),
 )

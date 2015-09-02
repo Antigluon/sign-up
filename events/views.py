@@ -8,5 +8,7 @@ from .models import *
 def index(request):
     context = {"events_" : Event.objects.all()}
     return render(request, 'home.html', context)
-    
 
+class DetailView(generic.DetailView):
+    model = Event
+    template_name = "events/detail.html"
