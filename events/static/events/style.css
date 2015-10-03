@@ -1,3 +1,18 @@
-tr.clickable-row{
+.clickable-row{
     cursor:pointer;
+}
+
+.fixed-panel {
+    min-height: 100;
+    max-height: 200;
+    overflow-y: scroll;
+}
+
+.lg-title {
+    font-size:36px !important;
+}
+
+.borderless td, .borderless th {
+    border:none !important;
+    padding:0px !important;
 }

@@ -1,9 +1,26 @@
 {% extends "base.html" %}
 {% block title %} View Event {% endblock %}
+{% block pagename %}{{event}}{% endblock %}
 {% block content %}
-<ul>
-    <li>{{event.name}}</li>
-    <li>{{event.place}}</li>
-    <li>{{event.date|date}} at {{event.date|time}}</li>
-</ul>
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h1 class="panel-title lg-title">{{event.name}}</h1>
+      <h4>{{event.date|time}} at {{event.place}} on {{event.date|date}}</h4>
+      {% if user and not user.is_anonymous %}
+        <div style="width:150px"><a href="#" class="btn btn-success" role="button" aria-label="Attend Event" data-toggle="collapse" data-target=".TxtArea{{event.id}}">Attend Event</a></div>
+        {% include "events/attend.html" with event=event user=user %}
+      {% endif %}
+    </div>
+    <div class="panel-body fixed-panel">
+          {{event.desc}}
+    </div>
+  
+    <!-- Table of Users attending -->
+    <table class="table">
+      <thead><th>Attending:</th></thead>
+      {% for user in event.signed_up.all %}
+        <tr><td><strong>{{user}}</strong></td></tr>
+      {% endfor %}
+    </table>
+  </div>
 {% endblock %}

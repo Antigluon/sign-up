@@ -9,8 +9,14 @@ class Event(models.Model):
     pub_date = models.DateTimeField("Date when people can sign up")
     signed_up = models.ManyToManyField(User)
     
+    
     def __str__(self):
         return str(self.name)
+        
+class Comment(models.Model):
+    user = models.ForeignKey(User)
+    text  = models.CharField(max_length = 8000)
+    event = models.ForeignKey(Event)
     
     
     

@@ -1,0 +1,16 @@
+{% comment %} # requires context: event and user {% endcomment %}
+
+<form action="{% url 'events:attendEvent' %}" method="POST">
+    {% csrf_token %}
+    <div class="form-group collapse TxtArea{{event.id}}">
+        <input type="hidden" name="user" value="{{user.id}}"/>
+        <input type="hidden" name="event_" value="{{event.id}}"/>
+        <p>{{event.desc}}</p>
+        <label>Other Information:</label>
+        <textarea class="form-control" name="info" rows="5" placeholder="10000 character limit"></textarea>
+        <div class="btn-group" role="group" aria-label="Attend or cancel">
+            <input type="submit" class="btn btn-success" aria-label="Attend Event" value="Attend Event"/>
+            <a href="#" class="btn btn-danger" aria-label="Cancel" role="button" data-toggle="collapse" data-target=".TxtArea{{event.id}}">Cancel</a>
+        </div>
+    </div>
+</form>

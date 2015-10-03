@@ -1,10 +1,11 @@
 {% extends "base.html" %}
 {% block title %} Home {% endblock %}
+{% block pagename %} Home {% endblock %}
 {% block content %}
     <script>
         jQuery(document).ready(function($) {
         $(".clickable-row").click(function(event) {
-            if (!$(event.target).is('a')) {
+            if (!$(event.target).is('a') && !$(event.target).is('textarea')) {
                 window.document.location = $(this).data("href");
             }
         });
@@ -26,8 +27,18 @@
                     <td>{{event.name}}</td>
                     <td>{{event.date|date}} at {{event.date|time}}</td>
                     <td>{{event.place}}</td>
-                    <td><div style="width:150px"><a href="http://www.google.com" class="btn btn-success">Attend Event</a></div></td>
-                </tr> 
+                    <td>
+                        {% if user and not user.is_anonymous %}
+                            {% comment %}{% if user.event_set.filter(pk=event.id).exists() %}{% endcomment %}
+                            <div style="width:150px"><a href="#" class="btn btn-success" role="button" aria-label="Attend Event" data-toggle="collapse" data-target=".TxtArea{{event.id}}">Attend Event</a></div>
+                        {% endif %}
+                    </td>
+                </tr>
+                <tr class="borderless collapse TxtArea{{event.id}}">
+                    <td colspan="4">
+                        {% include "events/attend.html" with event=event user=user %}
+                    </td>
+                </tr>
                 {% endfor %}
             </tbody>
         </table>
