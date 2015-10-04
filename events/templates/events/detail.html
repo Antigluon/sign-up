@@ -7,9 +7,13 @@
       <h1 class="panel-title lg-title">{{event.name}}</h1>
       <h4>{{event.date|time}} at {{event.place}} on {{event.date|date}}</h4>
       {% if user and not user.is_anonymous %}
-        <div style="width:150px"><a href="#" class="btn btn-success" role="button" aria-label="Attend Event" data-toggle="collapse" data-target=".TxtArea{{event.id}}">Attend Event</a></div>
-        {% include "events/attend.html" with event=event user=user %}
+        {% if not event in user.event_set.all %}
+            <div style="width:150px"><a href="#" class="btn btn-success" role="button" aria-label="Attend Event" data-toggle="collapse" data-target=".TxtArea{{event.id}}">Attend Event</a></div>
+        {% else %}
+            <div style="width:150px"><a href="#" class="btn btn-danger" role="button" aria-label="Not Attending">Not Attending</a></div>
+        {% endif %}
       {% endif %}
+      {% include "events/attend.html" with event=event user=user %}
     </div>
     <div class="panel-body fixed-panel">
           {{event.desc}}

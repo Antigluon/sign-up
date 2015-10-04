@@ -1,4 +1,4 @@
 #! /bin/bash
 git add -A
-git commit -m $1
+git commit -m "Added Not Attending button if attending, currently null link"
 git push -u origin master

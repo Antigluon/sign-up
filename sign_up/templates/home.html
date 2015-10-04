@@ -29,8 +29,11 @@
                     <td>{{event.place}}</td>
                     <td>
                         {% if user and not user.is_anonymous %}
-                            {% comment %}{% if user.event_set.filter(pk=event.id).exists() %}{% endcomment %}
-                            <div style="width:150px"><a href="#" class="btn btn-success" role="button" aria-label="Attend Event" data-toggle="collapse" data-target=".TxtArea{{event.id}}">Attend Event</a></div>
+                            {% if not event in user.event_set.all %}
+                                <div style="width:150px"><a href="#" class="btn btn-success" role="button" aria-label="Attend Event" data-toggle="collapse" data-target=".TxtArea{{event.id}}">Attend Event</a></div>
+                            {% else %}
+                                <div style="width:150px"><a href="#" class="btn btn-danger" role="button" aria-label="Not Attending">Not Attending</a></div>
+                            {% endif %}
                         {% endif %}
                     </td>
                 </tr>
