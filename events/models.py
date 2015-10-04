@@ -17,6 +17,8 @@ class Comment(models.Model):
     user = models.ForeignKey(User)
     text  = models.CharField(max_length = 8000)
     event = models.ForeignKey(Event)
+    def __str__(self):
+        return str(self.text)
     
     
     

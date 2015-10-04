@@ -1,0 +1,29 @@
+{% comment %} # requires context: event and user {% endcomment %}
+
+<div style="width:150px"><a href="#" class="btn btn-danger" role="button" aria-label="Not Attending" data-toggle="modal" data-target="#ModalUnattend">Not Attending</a></div>
+<div class="modal fade" id="ModalUnattend" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h3 class="modal-title">Leave Event</h4>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you wish to leave this event? <strong>This cannot easily be undone.</strong></p>
+            </div>
+            <div class="modal-footer">
+                <form action="{% url 'events:leaveEvent' %}" method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="user" value="{{user.id}}"/>
+                    <input type="hidden" name="event_" value="{{event.id}}"/>
+                    <input type="submit" style="inline" class="btn btn-danger" aria-label="Confirm" value="Confirm"/>
+                    <button type="button" style="inline" class="btn btn-success" data-dismiss="modal">Never Mind</button>
+                </form>    
+            </div>
+      </div>
+    </div>
+</div>
+    
+        
+            
+    

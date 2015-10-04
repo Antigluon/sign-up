@@ -26,4 +26,15 @@ def attendEvent(request):
     c.save()
     return HttpResponseRedirect(reverse("events:detail",args=(eventID)))
     
+def leaveEvent(request):
+    eventID = request.POST['event_']
+    userID = request.POST['user']
+    event = Event.objects.get(pk=eventID)
+    user = User.objects.get(pk=userID)
+    for comment in user.comment_set.all():
+        if comment.event == event:
+            comment.delete()
+    event.signed_up.remove(user)
+    return HttpResponseRedirect(reverse("events:index"))
+    
      
