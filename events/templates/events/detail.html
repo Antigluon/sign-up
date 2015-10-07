@@ -10,7 +10,7 @@
         {% if not event in user.event_set.all %}
             <div style="width:150px"><a href="#" class="btn btn-success" role="button" aria-label="Attend Event" data-toggle="collapse" data-target=".TxtArea{{event.id}}">Attend Event</a></div>
         {% else %}
-            <div style="width:150px"><a href="#" class="btn btn-danger" role="button" aria-label="Not Attending">Not Attending</a></div>
+            {% include "events/leave.html" with event=event user=user %}
         {% endif %}
       {% endif %}
       {% include "events/attend.html" with event=event user=user %}

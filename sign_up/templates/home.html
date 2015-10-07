@@ -5,7 +5,7 @@
     <script>
         jQuery(document).ready(function($) {
         $(".clickable-row").click(function(event) {
-            if (!$(event.target).is('a') && !$(event.target).is('textarea')) && !$(event.target).is('button') {
+            if (!$(event.target).is('a') && (!$(event.target).is('textarea')) && (!$(event.target).is('button') && $(event.target).is('td'))) {
                 window.document.location = $(this).data("href");
             }
         });
