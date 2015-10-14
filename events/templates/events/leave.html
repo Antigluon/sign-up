@@ -1,7 +1,7 @@
 {% comment %} # requires context: event and user {% endcomment %}
 
-<div style="width:150px"><a href="#" class="btn btn-danger" role="button" aria-label="Not Attending" data-toggle="modal" data-target="#ModalUnattend">Not Attending</a></div>
-<div class="modal fade" id="ModalUnattend" role="dialog">
+<div style="width:150px"><a href="#" class="btn btn-danger" role="button" aria-label="Not Attending" data-toggle="modal" data-target="#ModalUnattend{{event.id}}">Not Attending</a></div>
+<div class="modal fade" id="ModalUnattend{{event.id}}" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
