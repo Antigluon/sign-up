@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %} Register {% endblock %}
+{% block pagename %} Register {% endblock %}
+
+{% block content %}
+    <h1>Create an account</h1>
+    
+    <form action="{% url 'register' %}" method="post">
+        {% csrf_token %} 
+        <label class="control-label" for="{{ form.username.id_for_label }}">{{ form.username.label }}</label>
+            <input type="text" class="form-control"
+                name="{{ form.username.name }}"
+                id="id_{{ form.username.name }}"
+                value="{{ form.username.value|default_if_none:"" }}" placeholder="Username"> 
+                <p class="help-text">{{ form.username.help_text }} </p>
+        <label class="control-label" for="{{ form.email.id_for_label }}">{{ form.email.label }}</label>
+            <input type="text" class="form-control"
+                name="{{ form.email.name }}"
+                id="id_{{ form.email.name }}"
+                value="{{ form.email.value|default_if_none:"" }}" placeholder="Email"> 
+                <p class="help-text">{{ form.email.help_text }} </p>
+        <label class="control-label" for="{{ form.password1.id_for_label }}">{{ form.password1.label }}</label>
+            <input type="password" class="form-control"
+                name="{{ form.password1.name }}"
+                id="id_{{ form.password1.name }}"
+                value="{{ form.password1.value|default_if_none:"" }}" placeholder="Password"> 
+                <p class="help-text">{{ form.password1.help_text }} </p>
+        <label class="control-label" for="{{ form.password2.id_for_label }}">{{ form.password2.label }}</label>
+            <input type="password" class="form-control"
+                name="{{ form.password2.name }}"
+                id="id_{{ form.password2.name }}"
+                value="{{ form.password2.value|default_if_none:"" }}" placeholder="Confirm Password"> 
+                <p class="help-text">{{ form.password2.help_text }} </p>
+        <input type="submit" value="Register" class="btn btn-primary">
+    </form>
+{% endblock %}

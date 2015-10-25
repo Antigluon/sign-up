@@ -1,4 +1,4 @@
 #! /bin/bash
 git add -A
-git commit -m "Unattend on detail page too."
+git commit -m "Uname+Pword login+register"
 git push -u origin master
