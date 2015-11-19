@@ -1,0 +1,1 @@
+web: gunicorn sign_up.wsgi --log-file -

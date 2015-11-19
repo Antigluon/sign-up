@@ -13,5 +13,5 @@ class EventAdmin(admin.ModelAdmin):
     
 
 admin.site.register(Event, EventAdmin)
-admin.site.register(Comment)
-admin.site.unregister(Group)
+#admin.site.register(Comment)
+#admin.site.unregister(Group)

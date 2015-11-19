@@ -13,6 +13,9 @@ import os
 from os.path import join
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
+#import dj_database_url
+#DATABASES['default'] =  dj_database_url.config()
+
 LOGIN_URL = '/'
 
 # Quick-start development settings - unsuitable for production
@@ -26,7 +29,7 @@ DEBUG = True
 
 TEMPLATE_DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 
@@ -69,6 +72,8 @@ SOCIAL_AUTH_FACEBOOK_SCOPE = ['public_profile', 'email', 'user_friends']
 SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
     'fields': 'id,name,email', # needed starting from protocol v2.4
 }
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '784258225894-f3j5b6avnffckkps85p1k73dmpo0i7td.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'SWlRqlNhieFxfjZ9LKoQXwGO'
 
 ROOT_URLCONF = 'sign_up.urls'
 

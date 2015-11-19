@@ -11,40 +11,38 @@
         });
         });
     </script>
-    <div class="container-fluid">
-        <table class="table table-hover">
-            <thead>
-              <tr>
-                <th>Event</th>
-                <th>When</th>
-                <th>Where</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-                {% for event in events_ %}
-                <tr class="clickable-row" data-href="detail/{{event.id}}">
-                    <td>{{event.name}}</td>
-                    <td>{{event.date|date}} at {{event.date|time}}</td>
-                    <td>{{event.place}}</td>
-                    <td>
-                        {% if user and not user.is_anonymous %}
-                            {% if not event in user.event_set.all %}
-                                <div style="width:150px"><a href="#" class="btn btn-success" role="button" aria-label="Attend Event" data-toggle="collapse" data-target=".TxtArea{{event.id}}">Attend Event</a></div>
-                            {% else %}
-                                {% include "events/leave.html" with event=event user=user %}
-                            {% endif %}
+    <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>Event</th>
+            <th>When</th>
+            <th>Where</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for event in events_ %}
+            <tr class="clickable-row" data-href="detail/{{event.id}}">
+                <td>{{event.name}}</td>
+                <td>{{event.date|date}} at {{event.date|time}}</td>
+                <td>{{event.place}}</td>
+                <td>
+                    {% if user and not user.is_anonymous %}
+                        {% if not event in user.event_set.all %}
+                            <divc><a href="#" class="btn btn-success" role="button" aria-label="Attend Event" data-toggle="collapse" data-target=".TxtArea{{event.id}}">Attend Event</a></div>
+                        {% else %}
+                            {% include "events/leave.html" with event=event user=user %}
                         {% endif %}
-                    </td>
-                </tr>
-                <tr class="borderless collapse TxtArea{{event.id}}">
-                    <td colspan="4">
-                        {% include "events/attend.html" with event=event user=user %}
-                    </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
+                    {% endif %}
+                </td>
+            </tr>
+            <tr class="borderless collapse TxtArea{{event.id}}">
+                <td colspan="4">
+                    {% include "events/attend.html" with event=event user=user %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 {% endblock %}
 
