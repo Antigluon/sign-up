@@ -11,45 +11,12 @@
         });
         });
     </script>
-    <table class="table table-hover listEvents">
-        <thead>
-          <tr>
-            <th>Event</th>
-            <th>When</th>
-            <th>Where</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-            {% for event in events_ %}
-            <tr class="clickable-row" data-href="detail/{{event.id}}">
-                <td>{{event.name}}</td>
-                <td>{{event.date|date}} at {{event.date|time}}</td>
-                <td>{{event.place}}</td>
-                <td>
-                    {% if user and not user.is_anonymous %}
-                        {% if not event in user.event_set.all %}
-                            <divc><div" class="btn btn-success" role="button" aria-label="Attend Event" data-toggle="collapse" data-target=".TxtAreaM{{event.id}}">Attend Event</div></div>
-                        {% else %}
-                            {% include "events/leave.html" with event=event user=user M="M" %}
-                        {% endif %}
-                    {% endif %}
-                </td>
-            </tr>
-            <tr class="borderless collapse TxtAreaM{{event.id}}">
-                <td colspan="4">
-                    {% include "events/attend.html" with event=event user=user M="M" %}
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
     <div class="row cards">
         {% for event in events_ %}
-            <div class="col-sm-6 col-md-4" data-href="detail/{{event.id}}">
-              <div class="panel panel-primary">
+            <div class="col-sm-6 col-md-4 col-xs-12" data-href="detail/{{event.id}}">
+              <div class="panel panel-default">
                 <div class="panel-heading">
-                  <h1 class="panel-title lg-title"><a href="detail/{{event.id}}">{{event.name}}</a></h1>
+                  <h1 class="panel-title lg-title"><a href="detail/{{event.id}}" style="text-decoration: underline">{{event.name}}</a></h1>
                   <h4 class="fixed-info">{{event.date|time}} at {{event.place}} on {{event.date|date}}</h4>
                   {% if user and not user.is_anonymous %}
                     {% if not event in user.event_set.all %}
