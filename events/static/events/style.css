@@ -23,12 +23,23 @@
     padding:0px !important;
 }
 
+.cards {
+    display: none;
+}
+
 @media screen and (min-width: 768px) {
     .btn-social {
         margin-top: 8px;
+    }
+    .cards {
+        display: block;
+    }
+    .listEvents {
+        display: none;
     }
 }
 
 body {
     font-family: 'Exo 2', sans-serif; 
 }
+

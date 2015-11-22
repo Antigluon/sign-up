@@ -2,9 +2,43 @@
 {% block title %} Home {% endblock %}
 {% block pagename %} Home {% endblock %}
 {% block content %}
-    <div class="row">
+    
+    <table class="table table-hover listEvents">
+        <thead>
+          <tr>
+            <th>Event</th>
+            <th>When</th>
+            <th>Where</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for event in events_ %}
+            <tr class="clickable-row" data-href="detail/{{event.id}}">
+                <td>{{event.name}}</td>
+                <td>{{event.date|date}} at {{event.date|time}}</td>
+                <td>{{event.place}}</td>
+                <td>
+                    {% if user and not user.is_anonymous %}
+                        {% if not event in user.event_set.all %}
+                            <divc><a href="#" class="btn btn-success" role="button" aria-label="Attend Event" data-toggle="collapse" data-target=".TxtArea{{event.id}}">Attend Event</a></div>
+                        {% else %}
+                            {% include "events/leave.html" with event=event user=user %}
+                        {% endif %}
+                    {% endif %}
+                </td>
+            </tr>
+            <tr class="borderless collapse TxtArea{{event.id}}">
+                <td colspan="4">
+                    {% include "events/attend.html" with event=event user=user %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="row cards">
         {% for event in events_ %}
-            <div class="col-xs-12 col-sm-6 col-md-4" data-href="detail/{{event.id}}">
+            <div class="col-sm-6 col-md-4" data-href="detail/{{event.id}}">
               <div class="panel panel-primary">
                 <div class="panel-heading">
                   <h1 class="panel-title lg-title"><a href="detail/{{event.id}}">{{event.name}}</a></h1>
@@ -24,6 +58,6 @@
             </div>
             </div>
         {% endfor %}
-    </div>
+            </div>
 {% endblock %}
 
