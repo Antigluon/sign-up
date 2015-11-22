@@ -7,8 +7,8 @@
             <div class="col-xs-12 col-sm-6 col-md-4" data-href="detail/{{event.id}}">
               <div class="panel panel-primary">
                 <div class="panel-heading">
-                  <h1 class="panel-title lg-title">{{event.name}}</h1>
-                  <h4 class="fixed-panel">{{event.date|time}} at {{event.place}} on {{event.date|date}}</h4>
+                  <h1 class="panel-title lg-title"><a href="detail/{{event.id}}">{{event.name}}</a></h1>
+                  <h4 class="fixed-info">{{event.date|time}} at {{event.place}} on {{event.date|date}}</h4>
                   {% if user and not user.is_anonymous %}
                     {% if not event in user.event_set.all %}
                         <div style="width:150px"><a href="#" class="btn btn-success" role="button" aria-label="Attend Event" data-toggle="collapse" data-target=".TxtArea{{event.id}}">Attend Event</a></div>
