@@ -2,47 +2,28 @@
 {% block title %} Home {% endblock %}
 {% block pagename %} Home {% endblock %}
 {% block content %}
-    <script>
-        jQuery(document).ready(function($) {
-        $(".clickable-row").click(function(event) {
-            if (!$(event.target).is('a') && (!$(event.target).is('textarea')) && (!$(event.target).is('button') && $(event.target).is('td'))) {
-                window.document.location = $(this).data("href");
-            }
-        });
-        });
-    </script>
-    <table class="table table-hover">
-        <thead>
-          <tr>
-            <th>Event</th>
-            <th>When</th>
-            <th>Where</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-            {% for event in events_ %}
-            <tr class="clickable-row" data-href="detail/{{event.id}}">
-                <td>{{event.name}}</td>
-                <td>{{event.date|date}} at {{event.date|time}}</td>
-                <td>{{event.place}}</td>
-                <td>
-                    {% if user and not user.is_anonymous %}
-                        {% if not event in user.event_set.all %}
-                            <divc><a href="#" class="btn btn-success" role="button" aria-label="Attend Event" data-toggle="collapse" data-target=".TxtArea{{event.id}}">Attend Event</a></div>
-                        {% else %}
-                            {% include "events/leave.html" with event=event user=user %}
-                        {% endif %}
+    <div class="row">
+        {% for event in events_ %}
+            <div class="col-xs-12 col-sm-6 col-md-4" data-href="detail/{{event.id}}">
+              <div class="panel panel-primary">
+                <div class="panel-heading">
+                  <h1 class="panel-title lg-title">{{event.name}}</h1>
+                  <h4 class="fixed-panel">{{event.date|time}} at {{event.place}} on {{event.date|date}}</h4>
+                  {% if user and not user.is_anonymous %}
+                    {% if not event in user.event_set.all %}
+                        <div style="width:150px"><a href="#" class="btn btn-success" role="button" aria-label="Attend Event" data-toggle="collapse" data-target=".TxtArea{{event.id}}">Attend Event</a></div>
+                    {% else %}
+                        {% include "events/leave.html" with event=event user=user %}
                     {% endif %}
-                </td>
-            </tr>
-            <tr class="borderless collapse TxtArea{{event.id}}">
-                <td colspan="4">
-                    {% include "events/attend.html" with event=event user=user %}
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+                  {% endif %}
+                  {% include "events/attend.html" with event=event user=user %}
+                </div>
+                <div class="panel-body fixed-panel">
+                      {{event.desc}}
+                </div>
+            </div>
+            </div>
+        {% endfor %}
+    </div>
 {% endblock %}
 
