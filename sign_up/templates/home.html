@@ -2,7 +2,15 @@
 {% block title %} Home {% endblock %}
 {% block pagename %} Home {% endblock %}
 {% block content %}
-    
+    <script>
+        jQuery(document).ready(function($) {
+        $(".clickable-row").click(function(event) {
+            if (!$(event.target).is('a') && (!$(event.target).is('textarea')) && (!$(event.target).is('button') && $(event.target).is('td'))) {
+                window.document.location = $(this).data("href");
+            }
+        });
+        });
+    </script>
     <table class="table table-hover listEvents">
         <thead>
           <tr>
@@ -21,16 +29,16 @@
                 <td>
                     {% if user and not user.is_anonymous %}
                         {% if not event in user.event_set.all %}
-                            <divc><a href="#" class="btn btn-success" role="button" aria-label="Attend Event" data-toggle="collapse" data-target=".TxtArea{{event.id}}">Attend Event</a></div>
+                            <divc><div" class="btn btn-success" role="button" aria-label="Attend Event" data-toggle="collapse" data-target=".TxtAreaM{{event.id}}">Attend Event</div></div>
                         {% else %}
-                            {% include "events/leave.html" with event=event user=user %}
+                            {% include "events/leave.html" with event=event user=user M="M" %}
                         {% endif %}
                     {% endif %}
                 </td>
             </tr>
-            <tr class="borderless collapse TxtArea{{event.id}}">
+            <tr class="borderless collapse TxtAreaM{{event.id}}">
                 <td colspan="4">
-                    {% include "events/attend.html" with event=event user=user %}
+                    {% include "events/attend.html" with event=event user=user M="M" %}
                 </td>
             </tr>
             {% endfor %}
@@ -45,12 +53,12 @@
                   <h4 class="fixed-info">{{event.date|time}} at {{event.place}} on {{event.date|date}}</h4>
                   {% if user and not user.is_anonymous %}
                     {% if not event in user.event_set.all %}
-                        <div style="width:150px"><a href="#" class="btn btn-success" role="button" aria-label="Attend Event" data-toggle="collapse" data-target=".TxtArea{{event.id}}">Attend Event</a></div>
+                        <div style="width:150px"><div class="btn btn-success" role="button" aria-label="Attend Event" data-toggle="collapse" data-target=".TxtArea{{event.id}}">Attend Event</div></div>
                     {% else %}
-                        {% include "events/leave.html" with event=event user=user %}
+                        {% include "events/leave.html" with event=event user=user M="" %}
                     {% endif %}
                   {% endif %}
-                  {% include "events/attend.html" with event=event user=user %}
+                      {% include "events/attend.html" with event=event user=user M="" %}
                 </div>
                 <div class="panel-body fixed-panel">
                       {{event.desc}}

@@ -1,4 +1,4 @@
 #! /bin/bash
 git add -A
-git commit -m "Uname+Pword login+register"
+git commit -m "Bugfixes"
 git push -u origin master
