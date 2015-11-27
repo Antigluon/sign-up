@@ -20,5 +20,9 @@ class Comment(models.Model):
     def __str__(self):
         return str(self.text)
     
+class Image(models.Model):
+    image = models.ImageField(upload_to="events/images/")
+    event = models.ForeignKey(Event)
+    
     
     

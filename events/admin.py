@@ -7,11 +7,13 @@ from .models import *
 class CommentInline(admin.TabularInline):
     model = Comment
     extra = 0
+    
+class ImageInline(admin.TabularInline):
+    model = Image
+    extra = 0
 
 class EventAdmin(admin.ModelAdmin):
-    inlines = [CommentInline]
+    inlines = [CommentInline, ImageInline]
     
 
 admin.site.register(Event, EventAdmin)
-#admin.site.register(Comment)
-#admin.site.unregister(Group)

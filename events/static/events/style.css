@@ -27,12 +27,19 @@
     .btn-social {
         margin-top: 8px;
     }
-
+}
+@media screen and (max-width: 959px) {
+    .navLeft {
+        float: left !important;
+    }
 }
 
 body {
     font-family: 'Exo 2', sans-serif; 
 }
 
-
+.detImg{
+    height: 300px;
+    width: 100%;
+}
 

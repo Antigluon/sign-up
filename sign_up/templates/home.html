@@ -2,15 +2,6 @@
 {% block title %} Home {% endblock %}
 {% block pagename %} Home {% endblock %}
 {% block content %}
-    <script>
-        jQuery(document).ready(function($) {
-        $(".clickable-row").click(function(event) {
-            if (!$(event.target).is('a') && (!$(event.target).is('textarea')) && (!$(event.target).is('button') && $(event.target).is('td'))) {
-                window.document.location = $(this).data("href");
-            }
-        });
-        });
-    </script>
     <div class="row cards">
         {% for event in events_ %}
             <div class="col-sm-6 col-md-4 col-xs-12" data-href="detail/{{event.id}}">

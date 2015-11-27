@@ -20,11 +20,24 @@
     </div>
   
     <!-- Table of Users attending -->
-    <table class="table">
-      <thead><th>Attending:</th></thead>
-      {% for user in event.signed_up.all %}
-        <tr><td><strong>{{user}}</strong></td></tr>
-      {% endfor %}
-    </table>
+    <div class="row">
+      <div class="col-xs-12">
+        <table class="table">
+          <thead><th>Attending:</th></thead>
+          {% for user in event.signed_up.all %}
+            <tr><td><strong>{{user}}</strong></td></tr>
+          {% endfor %}
+        </table>
+      </div>
+    </div>
+    <div class="row">
+    </div>
+  </div>
+  <div class="row">
+  {% for image in event.image_set.all %}
+  <div class = "col-xs-12 col-sm-6 col-md-4">
+    <img src="{{image.image.url}}" class="detImg"/>
+  </div>
+  {% endfor %}
   </div>
 {% endblock %}

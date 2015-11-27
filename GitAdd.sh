@@ -1,4 +1,4 @@
 #! /bin/bash
 git add -A
-git commit -m "Bugfixes"
+git commit -m "Photoes!"
 git push -u origin master
