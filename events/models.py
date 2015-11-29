@@ -22,7 +22,7 @@ class Comment(models.Model):
     
 class Image(models.Model):
     image = models.ImageField(upload_to="events/images/")
-    caption = models.CharField(max_length=2000,null=True)
+    caption = models.CharField(max_length=2000,blank=True)
     event = models.ForeignKey(Event)
     
     
