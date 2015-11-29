@@ -4,7 +4,7 @@
 {% block content %}
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h1 class="panel-title lg-title">{{event.name}}</h1>
+      <h1 class="panel-title lg-title fixed-info">{{event.name}}</h1>
       <h4>{{event.date|time}} at {{event.place}} on {{event.date|date}}</h4>
       {% if user and not user.is_anonymous %}
         {% if not event in user.event_set.all %}
@@ -27,7 +27,7 @@
           {% for user in event.signed_up.all %}
             <tr><td><strong>{{user}}</strong></td></tr>
           {% endfor %}
-        </table>
+        </table> 
       </div>
     </div>
     <div class="row">
@@ -37,6 +37,7 @@
   {% for image in event.image_set.all %}
   <div class = "col-xs-12 col-sm-6 col-md-4">
     <img src="{{image.image.url}}" class="detImg"/>
+    <h4 class="fixed-info">{{image.caption}}</h4>
   </div>
   {% endfor %}
   </div>

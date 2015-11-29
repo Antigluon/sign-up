@@ -7,7 +7,7 @@
             <div class="col-sm-6 col-md-4 col-xs-12" data-href="detail/{{event.id}}">
               <div class="panel panel-default">
                 <div class="panel-heading">
-                  <h1 class="panel-title lg-title"><a href="detail/{{event.id}}" style="text-decoration: underline">{{event.name}}</a></h1>
+                  <h1 class="panel-title lg-title fixed-info"><a href="detail/{{event.id}}" style="text-decoration: underline">{{event.name}}</a></h1>
                   <h4 class="fixed-info">{{event.date|time}} at {{event.place}} on {{event.date|date}}</h4>
                   {% if user and not user.is_anonymous %}
                     {% if not event in user.event_set.all %}

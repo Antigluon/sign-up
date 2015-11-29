@@ -16,6 +16,7 @@
 
 .lg-title {
     font-size:36px !important;
+    overflow-x: auto;
 }
 
 .borderless td, .borderless th, .borderless div {
@@ -36,5 +37,9 @@ body {
 .detImg{
     height: 300px;
     width: 100%;
-}
+}    
 
+#bannerImg{
+    width: 100%;
+    height: auto: ;
+}
