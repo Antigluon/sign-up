@@ -2,47 +2,60 @@
 {% block title %} Home {% endblock %}
 {% block pagename %} Home {% endblock %}
 {% block content %}
-    <div class="dropdown">
-      <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Show by month
-      <span class="caret"></span></button>
-      <ul class="dropdown-menu">
-        <li><a href="#" id="show-all">Show all</a></li>
-        <li><a href="#" class="month-search month-search1">January</a></li>
-        <li><a href="#" class="month-search month-search2">Febuary</a></li>
-        <li><a href="#" class="month-search month-search3">March</a></li>
-        <li><a href="#" class="month-search month-search4">April</a></li>
-        <li><a href="#" class="month-search month-search5">May</a></li>
-        <li><a href="#" class="month-search month-search6">June</a></li>
-        <li><a href="#" class="month-search month-search7">July</a></li>
-        <li><a href="#" class="month-search month-search8">August</a></li>
-        <li><a href="#" class="month-search month-search9">September</a></li>
-        <li><a href="#" class="month-search month-search10">October</a></li>
-        <li><a href="#" class="month-search month-search11">November</a></li>
-        <li><a href="#" class="month-search month-search12">December</a></li>
-      </ul>
+  <div class="btn-group btn-group-justified" role="group">
+    <div class="btn-group" role="group">
+      <button type="button" class="btn btn-default">Show only my events</button>
     </div>
-    <div class="row cards">
-        {% for event in events_ %}
-            <div class="col-sm-6 col-md-4 col-xs-12 mon{{event.date.month}} card" data-href="detail/{{event.id}}">
-              <div class="panel panel-default">
-                <div class="panel-heading">
-                  <h1 class="panel-title lg-title fixed-info"><a href="detail/{{event.id}}" style="text-decoration: underline">{{event.name}}</a></h1>
-                  <h4 class="fixed-info">{{event.date|time}} at {{event.place}} on {{event.date|date}}</h4>
-                  {% if user and not user.is_anonymous %}
-                    {% if not event in user.event_set.all %}
-                        <div style="width:150px"><div class="btn btn-success" role="button" aria-label="Attend Event" data-toggle="collapse" data-target=".TxtArea{{event.id}}">Attend Event</div></div>
-                    {% else %}
-                        {% include "events/leave.html" with event=event user=user M="" %}
-                    {% endif %}
+    <div class="btn-group" role="group">
+      <button type="button" class="btn btn-default">Show all events other than mine</button>
+    </div>
+    <div class="btn-group" role="group">
+      <button type="button" class="btn btn-default">Show all events</button>
+    </div>
+    <div class="btn-group" role="group">
+      <div class="dropdown">
+        <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Show by month
+        <span class="caret"></span></button>
+        <ul class="dropdown-menu">
+          <li><a href="#" id="show-all">Show all</a></li>
+          <li><a href="#" class="month-search month-search1">January</a></li>
+          <li><a href="#" class="month-search month-search2">Febuary</a></li>
+          <li><a href="#" class="month-search month-search3">March</a></li>
+          <li><a href="#" class="month-search month-search4">April</a></li>
+          <li><a href="#" class="month-search month-search5">May</a></li>
+          <li><a href="#" class="month-search month-search6">June</a></li>
+          <li><a href="#" class="month-search month-search7">July</a></li>
+          <li><a href="#" class="month-search month-search8">August</a></li>
+          <li><a href="#" class="month-search month-search9">September</a></li>
+          <li><a href="#" class="month-search month-search10">October</a></li>
+          <li><a href="#" class="month-search month-search11">November</a></li>
+          <li><a href="#" class="month-search month-search12">December</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="row cards">
+      {% for event in events_ %}
+          <div class="col-sm-6 col-md-4 col-xs-12 mon{{event.date.month}} card" data-href="detail/{{event.id}}">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h1 class="panel-title lg-title fixed-info"><a href="detail/{{event.id}}" style="text-decoration: underline">{{event.name}}</a></h1>
+                <h4 class="fixed-info">{{event.date|time}} at {{event.place}} on {{event.date|date}}</h4>
+                {% if user and not user.is_anonymous %}
+                  {% if not event in user.event_set.all %}
+                      <div style="width:150px"><div class="btn btn-success" role="button" aria-label="Attend Event" data-toggle="collapse" data-target=".TxtArea{{event.id}}">Attend Event</div></div>
+                  {% else %}
+                      {% include "events/leave.html" with event=event user=user M="" %}
                   {% endif %}
-                      {% include "events/attend.html" with event=event user=user M="" %}
-                </div>
-                <div class="panel-body fixed-panel">
-                      {{event.desc}}
-                </div>
-            </div>
-            </div>
-        {% endfor %}
-            </div>
+                {% endif %}
+                    {% include "events/attend.html" with event=event user=user M="" %}
+              </div>
+              <div class="panel-body fixed-panel">
+                    {{event.desc}}
+              </div>
+          </div>
+          </div>
+      {% endfor %}
+          </div>
 {% endblock %}
 
