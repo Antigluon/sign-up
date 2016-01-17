@@ -41,4 +41,12 @@
     $(".show-all").click(function(){
       $(".card").show(); 
     });
+    $(".show-mine").click(function(){
+      $(".card").hide();
+      $(".mine").show();
+    });
+    $(".showbutton").click(function(){
+      $(".highlighted").removeClass("highlighted");
+      $(this).addClass('highlighted');
+    });
   });

@@ -4,17 +4,16 @@
 {% block content %}
   <div class="btn-group btn-group-justified" role="group" style="padding-bottom: 10px;">
     <div class="btn-group" role="group">
-      <button type="button" class="btn btn-default">Show only my events</button>
+      <button type="button" class="btn btn-default show-mine showbutton">Show only my events</button>
     </div>
     <div class="btn-group" role="group">
-      <button type="button" class="btn btn-default show-all">Show all events</button>
+      <button type="button" class="btn btn-default show-all showbutton highlighted">Show all events</button>
     </div>
     <div class="btn-group" role="group">
       <div class="dropdown">
-        <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Show by month
+        <button class="btn btn-default dropdown-toggle showbutton" type="button" data-toggle="dropdown">Show by month
         <span class="caret"></span></button>
         <ul class="dropdown-menu">
-          <li><a href="#" class="show-all">Show all</a></li>
           <li><a href="#" class="month-search month-search1">January</a></li>
           <li><a href="#" class="month-search month-search2">Febuary</a></li>
           <li><a href="#" class="month-search month-search3">March</a></li>
@@ -33,7 +32,7 @@
   </div>
   <div class="row cards">
       {% for event in events_ %}
-          <div class="col-sm-6 col-md-4 col-xs-12 mon{{event.date.month}} card" data-href="detail/{{event.id}}">
+          <div class="col-sm-6 col-md-4 col-xs-12 mon{{event.date.month}} card {% if event in user.event_set.all %}mine{% endif %}" data-href="detail/{{event.id}}">
             <div class="panel panel-default">
               <div class="panel-heading">
                 <h1 class="panel-title lg-title fixed-title"><a href="detail/{{event.id}}" style="text-decoration: underline">{{event.name}}</a></h1>

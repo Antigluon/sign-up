@@ -1,3 +1,4 @@
 venv
 venv
-events/media/
+media/
+db.sqlite3

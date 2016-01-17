@@ -24,7 +24,8 @@ def attendEvent(request):
     event.save()
     c = Comment(user=user,event=event,text=info)
     c.save()
-    return HttpResponseRedirect(reverse("events:detail",args=(eventID)))
+    #print(eventID)
+    return HttpResponseRedirect(reverse("events:detail",kwargs={"pk":eventID}))
     
 def leaveEvent(request):
     eventID = request.POST['event_']

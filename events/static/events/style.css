@@ -53,3 +53,7 @@ body {
     max-height: 70;
     overflow-x: auto;
 }
+
+.highlighted{
+    background-color: #DDDDDD;
+}
