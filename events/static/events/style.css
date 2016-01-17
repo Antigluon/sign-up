@@ -41,5 +41,15 @@ body {
 
 #bannerImg{
     width: 100%;
-    height: auto: ;
+    height: auto;
+}
+
+body {
+    background-color: #FAFAFA;
+}
+
+.fixed-title {
+    min-height: 70;
+    max-height: 70;
+    overflow-x: auto;
 }

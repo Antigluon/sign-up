@@ -38,7 +38,7 @@
     $( ".month-search12" ).click(function(){
       $( ".mon12" ).show(); 
     });
-    $("#show-all").click(function(){
+    $(".show-all").click(function(){
       $(".card").show(); 
     });
   });
