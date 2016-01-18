@@ -24,9 +24,24 @@
     padding:0px !important;
 }
 
+.d{
+    display: none !important;
+}
+
+.sort-bar.btn-group{
+    display: inherit !important; 
+    width: 100%;
+}
+
 @media screen and (min-width: 768px) {
     .btn-social {
         margin-top: 8px;
+    }
+    .d {
+        display: table-cell !important;
+    }
+    .m{
+        display: none;
     }
 }
 
@@ -57,3 +72,4 @@ body {
 .highlighted{
     background-color: #DDDDDD;
 }
+

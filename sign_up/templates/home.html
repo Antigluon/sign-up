@@ -2,9 +2,12 @@
 {% block title %} Home {% endblock %}
 {% block pagename %} Home {% endblock %}
 {% block content %}
-  <div class="btn-group btn-group-justified" role="group" style="padding-bottom: 10px;">
-    <div class="btn-group" role="group">
-      <button type="button" class="btn btn-default show-mine showbutton">Show only my events</button>
+  <div class="btn-group btn-group-justified m" role="group" style="width:100%">
+    <button type="button" class="btn btn-default show-mine showbutton" style="width:100%">Show only my events</button>
+  </div>
+  <div class="btn-group btn-group-justified sort-bar" role="group" style="padding-bottom: 10px;">
+    <div class="btn-group d" role="group">
+      <button type="button" class="btn btn-default show-mine showbutton d">Show only my events</button>
     </div>
     <div class="btn-group" role="group">
       <button type="button" class="btn btn-default show-all showbutton highlighted">Show all events</button>
@@ -39,7 +42,7 @@
                 <h4 class="fixed-info">{{event.date|time}} at {{event.place}} on {{event.date|date}}</h4>
                 {% if user and not user.is_anonymous %}
                   {% if not event in user.event_set.all %}
-                      <div style="width:150px"><div class="btn btn-success" role="button" aria-label="Attend Event" data-toggle="collapse" data-target=".TxtArea{{event.id}}">Attend Event</div></div>
+                      <div style="width:150px" class=".TxtArea{{event.id}} collapse in" id="vanish{{event.id}}" aria-expanded="true"><div class="btn btn-success" role="button" aria-label="Attend Event" data-toggle="collapse" data-target=".TxtArea{{event.id}}, #vanish{{event.id}}">Attend Event</div></div>
                   {% else %}
                       {% include "events/leave.html" with event=event user=user M="" %}
                   {% endif %}

@@ -34,10 +34,22 @@
                         id="id_{{ form.password2.name }}"
                         value="{{ form.password2.value|default_if_none:"" }}" placeholder="Confirm Password"> 
                         <p class="help-text">{{ form.password2.help_text }} </p>
+                <label class="control-label" for="{{ form.first_name.id_for_label }}">{{ form.first_name.label }}</label>
+                    <input type="text" class="form-control login"
+                        name="{{ form.first_name.name }}"
+                        id="id_{{ form.first_name.name }}"
+                        value="{{ form.first_name.value|default_if_none:"" }}" placeholder="First Name">
+                        <p class="help-text">{{ form.first_name.help_text }} </p>
+                <label class="control-label" for="{{ form.last_name.id_for_label }}">{{ form.last_name.label }}</label>
+                    <input type="text" class="form-control login"
+                        name="{{ form.last_name.name }}"
+                        id="id_{{ form.last_name.name }}"
+                        value="{{ form.last_name.value|default_if_none:"" }}" placeholder="Last Name"> 
+                        <p class="help-text">{{ form.last_name.help_text }} </p>
                 <input type="submit" value="Register" class="btn btn-primary">
             </form>
             {% if form.errors %}
-                <p style="color:red">Your passwords did not match or your email/username was invalid.</p>
+                <p style="color:red">Your passwords did not match or a field was invalid.</p>
             {% endif %}
         </div>
     </div>

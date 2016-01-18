@@ -8,7 +8,7 @@
       <h4>{{event.date|time}} at {{event.place}} on {{event.date|date}}</h4>
       {% if user and not user.is_anonymous %}
         {% if not event in user.event_set.all %}
-            <div style="width:150px"><a href="#" class="btn btn-success" role="button" aria-label="Attend Event" data-toggle="collapse" data-target=".TxtArea{{event.id}}">Attend Event</a></div>
+            <div style="width:150px" class=".TxtArea{{event.id}} collapse in" id="vanish{{event.id}}"><a href="#" class="btn btn-success" role="button" aria-label="Attend Event" data-toggle="collapse" data-target=".TxtArea{{event.id}}, #vanish{{event.id}}">Attend Event</a></div>
         {% else %}
             {% include "events/leave.html" with event=event user=user %}
         {% endif %}
@@ -23,9 +23,15 @@
     <div class="row">
       <div class="col-xs-12">
         <table class="table">
-          <thead><th>Attending:</th></thead>
+          <th>Attending:</th>
           {% for user in event.signed_up.all %}
-            <tr><td><strong>{{user}}</strong></td></tr>
+            <tr><td><strong>
+              {% if user.first_name and user.last_name %}
+              {{user.first_name}} {{user.last_name}}
+              {% else %}
+              {{user}}
+              {% endif %}
+            </strong></td></tr>
           {% endfor %}
         </table> 
       </div>
