@@ -25,7 +25,7 @@ LOGIN_URL = '/'
 SECRET_KEY = 'hl213$1%y)u4-7jfimsq4%z8^1aqh#kgw)smi4dbbges8vcb40'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+#DEBUG = True
 
 TEMPLATE_DEBUG = True
 
@@ -66,14 +66,14 @@ AUTHENTICATION_BACKENDS = (
 
 SOCIAL_AUTH_EMAIL_VALIDATION_FUNCTION = 'events.views.email_validation'
 SOCIAL_AUTH_FORCE_EMAIL_VALIDATION = True
-SOCIAL_AUTH_FACEBOOK_KEY = '888900371196271'
-SOCIAL_AUTH_FACEBOOK_SECRET = '1e809cf0411eca6543ea2625683a7dbb'
+SOCIAL_AUTH_FACEBOOK_KEY = os.environ['FACEBOOK_KEY'] #'888900371196271'
+SOCIAL_AUTH_FACEBOOK_SECRET = os.environ['FACEBOOK_SECRET'] #'1e809cf0411eca6543ea2625683a7dbb'
 SOCIAL_AUTH_FACEBOOK_SCOPE = ['public_profile', 'email', 'user_friends']
 SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
     'fields': 'id,name,email', # needed starting from protocol v2.4
 }
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '784258225894-f3j5b6avnffckkps85p1k73dmpo0i7td.apps.googleusercontent.com'
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'SWlRqlNhieFxfjZ9LKoQXwGO'
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = os.environ['GOOGLE_KEY'] #'784258225894-f3j5b6avnffckkps85p1k73dmpo0i7td.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = os.environ['GOOGLE_SECRET'] #'SWlRqlNhieFxfjZ9LKoQXwGO'
 
 ROOT_URLCONF = 'sign_up.urls'
 
