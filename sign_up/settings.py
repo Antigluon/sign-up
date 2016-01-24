@@ -25,7 +25,7 @@ LOGIN_URL = '/'
 SECRET_KEY = 'hl213$1%y)u4-7jfimsq4%z8^1aqh#kgw)smi4dbbges8vcb40'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-#DEBUG = True
+DEBUG = True
 
 TEMPLATE_DEBUG = True
 
