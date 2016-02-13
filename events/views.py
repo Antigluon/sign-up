@@ -7,7 +7,8 @@ from .models import *
 from django.contrib.auth.models import User
 
 def index(request):
-    context = {"events_" : Event.objects.filter(date__lte=timezone.now()).order_by('-pub_date')}
+    #.filter(date__lte=timezone.now()).order_by('-pub_date')
+    context = {"events_" : Event.objects}
     return render(request, 'home.html', context)
 
 class DetailView(generic.DetailView):
