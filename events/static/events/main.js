@@ -1,4 +1,5 @@
   $(function() {
+    $(".card").show(); 
     $( ".month-search" ).click(function(){
       $( ".card" ).hide();
     });
