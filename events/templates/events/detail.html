@@ -23,15 +23,15 @@
     <div class="row">
       <div class="col-xs-12">
         <table class="table">
-          <th>Attending:</th>
+          <th><u>Attending:</u></th>
           {% for user in event.signed_up.all %}
-            <tr><td><strong>
+            <tr><td>
               {% if user.first_name and user.last_name %}
               {{user.first_name}} {{user.last_name}}
               {% else %}
               {{user}}
               {% endif %}
-            </strong></td></tr>
+            </td></tr>
           {% endfor %}
         </table> 
       </div>
