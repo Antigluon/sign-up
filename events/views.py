@@ -7,7 +7,6 @@ from .models import *
 from django.contrib.auth.models import User
 
 def index(request):
-    #.filter(date__lte=timezone.now()).order_by('-pub_date')
     context = {"events_" : Event.objects.all}
     return render(request, 'home.html', context)
 
