@@ -3,10 +3,10 @@ from django.contrib.auth.models import User
 from django.utils.timezone import now
 
 class Event(models.Model):
+    name = models.CharField(max_length = 255)
     date = models.DateField("Date of Event")
     time = models.CharField(max_length = 1000)
     place = models.CharField(max_length = 1000)
-    name = models.CharField(max_length = 255)
     desc = models.CharField("Description", max_length = 10000, null = True)
     signed_up = models.ManyToManyField(User, blank = True)
     
