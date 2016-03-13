@@ -8,7 +8,7 @@ class Event(models.Model):
     place = models.CharField(max_length = 1000)
     name = models.CharField(max_length = 255)
     desc = models.CharField("Description", max_length = 10000, null = True)
-    pub_date = models.DateTimeField("does not work.", null=True, blank=True)
+    pub_date = models.DateTimeField("does not work.", blank=True)
     signed_up = models.ManyToManyField(User, blank = True)
     
     def viewable(self):
