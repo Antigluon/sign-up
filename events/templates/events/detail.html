@@ -14,7 +14,7 @@
             {% Add to substitute waitlist buddon %}
           {% endif %}  
         {% else %}
-          {% if (event.signed_up.count() > event.min_attendees) or not event.locked() %}
+          {% if (event.signed_up.count() > -1) or not event.locked() %}
             {% include "events/leave.html" with event=event user=user %}
           {% else %}
             {% request a sub %}
