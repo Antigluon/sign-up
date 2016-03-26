@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.timezone import now
+from datetime import datetime
 
 class Event(models.Model):
     name = models.CharField(max_length = 255)
@@ -8,7 +9,17 @@ class Event(models.Model):
     time = models.CharField(max_length = 1000)
     place = models.CharField(max_length = 1000)
     desc = models.CharField("Description", max_length = 10000, null = True)
+    min_attendees = models.IntegerField("Minimum number of attendees", default=0)
+    max_attendees = models.IntegerField("Maximum number of attendees", default=9999)
+    lock_date = models.DateField("Date upon which people cannot leave the event if the minimum number of attendees has not been exceeded")
     signed_up = models.ManyToManyField(User, blank = True)
+    sub_waitlist = models.ManyToManyField(User, "People wanting to be substituted in if somebody leaves the event", related_name="substitutes", blank=True) 
+    
+    def locked(self):
+        if self.lock_date >= datetime.today():
+            return True
+        else:
+            return False
     
     def viewable(self):
         return True
