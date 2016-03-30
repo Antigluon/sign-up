@@ -11,7 +11,7 @@ class Event(models.Model):
     desc = models.CharField("Description", max_length = 10000, null = True)
     min_attendees = models.IntegerField("Minimum number of attendees", default=0)
     max_attendees = models.IntegerField("Maximum number of attendees", default=9999)
-    lock_date = models.DateField("Date upon which people cannot leave the event if the minimum number of attendees has not been exceeded")
+    lock_date = models.DateField("Date upon which people cannot leave the event if the minimum number of attendees has not been exceeded", default=datetime.now)
     signed_up = models.ManyToManyField(User, blank = True)
     sub_waitlist = models.ManyToManyField(User, "People wanting to be substituted in if somebody leaves the event", related_name="substitutes", blank=True) 
     
