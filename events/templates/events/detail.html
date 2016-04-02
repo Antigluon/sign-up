@@ -14,7 +14,7 @@
             <!-- Add to sub waitlist buddon -->
           {% endif %}  
         {% else %}
-          {% if (event.signed_up.count > event.min_attendees) or not event.locked() %}
+          {% if ( event.signed_up.count > event.min_attendees ) or not event.locked() %}
             {% include "events/leave.html" with event=event user=user %}
           {% else %}
             <!-- Request a sub buddon -->
