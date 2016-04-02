@@ -8,13 +8,13 @@
       <h4>{{event.time}} at {{event.place}} on {{event.date}}</h4>
       {% if user and not user.is_anonymous %}
         {% if not event in user.event_set.all %}
-          {% if event.signed_up.count<event.max_attendees %}
+          {% if event.signed_up.count < event.max_attendees %}
             <div style="width:150px" class=".TxtArea{{event.id}} collapse in" id="vanish{{event.id}}"><a href="#" class="btn btn-success" role="button" aria-label="Attend Event" data-toggle="collapse" data-target=".TxtArea{{event.id}}, #vanish{{event.id}}">Attend Event</a></div>
           {% else %}
             {% Add to substitute waitlist buddon %}
           {% endif %}  
         {% else %}
-          {% if (event.signed_up.count() > -1) or not event.locked() %}
+          {% if (event.signed_up.count > event.min_attendees) or not event.locked() %}
             {% include "events/leave.html" with event=event user=user %}
           {% else %}
             {% request a sub %}
