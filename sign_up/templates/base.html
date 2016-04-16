@@ -42,6 +42,7 @@
                     </ul>
                     <ul class="nav navbar-nav nav-tabs navbar-&#x2192;">
                         <li class="active"><a data-toggle="tab" href="#home"><strong>{% block pagename %}{% endblock %}</strong></a></li>
+                        <li><a data-toggle="tab" href="#calendar">Calendar</a></li>
                         <li><a data-toggle="tab" href="#about">About Us</a></li>
                         <li><a data-toggle="tab" href="#contact">Contact</a></li>
                     </ul>
@@ -53,6 +54,9 @@
             <div class="tab-content">
                 <div id="home" class="tab-pane fade in active">
                     {% block content %}{% endblock %}
+                </div>
+                <div id="calendar" class="tab-pane fade">
+                    <iframe src="https://calendar.google.com/calendar/embed?title=Events&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;height=600&amp;wkst=2&amp;bgcolor=%23ffffff&amp;src=k5nl2ku315dpep6c8ib0qolrl8%40group.calendar.google.com&amp;color=%2328754E&amp;ctz=America%2FNew_York" style="border:solid 1px #777" width="800" height="600" frameborder="0" scrolling="no"></iframe>
                 </div>
                 <div id="about" class="tab-pane fade">
                     <p>{% lorem %}</p>

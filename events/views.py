@@ -22,7 +22,7 @@ def attendEvent(request):
     user = User.objects.get(pk=userID)
     event.signed_up.add(user)
     event.save()
-    c = Comment(user=user,event=event,text=info)
+    c = Comment(user=user,event=event,text=(info+' '))
     c.save()
     #print(eventID)
     return HttpResponseRedirect(reverse("events:detail",kwargs={"pk":eventID}))
@@ -37,5 +37,13 @@ def leaveEvent(request):
             comment.delete()
     event.signed_up.remove(user)
     return HttpResponseRedirect(reverse("events:index"))
+    
+def addToSub(request):
+    eventID = request.POST['event_']
+    userID = request.POST['user']
+    event = Event.objects.get(pk=eventID)
+    user = User.objects.get(pk=userID)
+    event.substitutes.add(user)
+    event.save()
     
      

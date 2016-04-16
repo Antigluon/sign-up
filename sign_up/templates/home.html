@@ -42,10 +42,10 @@
                 <h1 class="panel-title lg-title fixed-title"><a href="detail/{{event.id}}" style="text-decoration: underline">{{event.name}}</a></h1>
                 <h4 class="fixed-info" style="font-size:14px">{{event.time}} at {{event.place}} on {{event.date}}</h4>
                 {% if user and not user.is_anonymous %}
-                  {% if not event in user.event_set.all %}
-                      <div style="width:150px" class=".TxtArea{{event.id}} collapse in" id="vanish{{event.id}}" aria-expanded="true"><div class="btn btn-success" role="button" aria-label="Attend Event" data-toggle="collapse" data-target=".TxtArea{{event.id}}, #vanish{{event.id}}">Attend Event</div></div>
+                  {% if user in event.signed_up.all %}
+                     {% include "events/leave.html" with event=event user=user M="" %}
                   {% else %}
-                      {% include "events/leave.html" with event=event user=user M="" %}
+                    <div style="width:150px" class=".TxtArea{{event.id}} collapse in" id="vanish{{event.id}}" aria-expanded="true"><div class="btn btn-success" role="button" aria-label="Attend Event" data-toggle="collapse" data-target=".TxtArea{{event.id}}, #vanish{{event.id}}">Attend Event</div></div>
                   {% endif %}
                 {% endif %}
                     {% include "events/attend.html" with event=event user=user M="" %}
