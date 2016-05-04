@@ -15,6 +15,7 @@ class Event(models.Model):
     signed_up = models.ManyToManyField(User, blank = True, related_name="signed_up")
     sub_waitlist = models.ManyToManyField(User, "People wanting to be substituted in if somebody leaves the event", related_name="substitutes", blank=True)
     eventId = models.CharField(max_length=200,editable=False)
+    leaving = models.ManyToManyField(User, blank = True, related_name="leaving", editable=False)
     
     def locked(self):
         if self.lock_date >= datetime.today():
@@ -40,6 +41,14 @@ class Image(models.Model):
     caption = models.CharField(max_length=2000,blank=True)
     event = models.ForeignKey(Event)
     
+class Attendee(models.Model):
+    user = models.ForeignKey(User)
+    event = models.ForeignKey(Event)
+    datetime_attended  = models.DateTimeField("You shouldn't be seeing this")
+    leaving = models.BooleanField("Bool", default=False)
+    
+    def __str__(self):
+        return str(self.user) + ", " + str(self.event)
     
     
     

@@ -85,3 +85,9 @@ ul.share-buttons li{
 ul.share-buttons img{
   width: 32px;
 }
+
+.center {
+    margin: auto;
+    width: 99%;
+    padding: 10px;
+}

@@ -29,20 +29,20 @@ def model_post_save(sender, **kwargs):
         'start':  {'date': start_end},
         'end':    {'date': start_end},
         'description': event.desc,
-        'guestsCanInviteOthers': False,
+        'guestsCanInviteOthers': False
     }
     attendees = []
     for user in event.signed_up.all():
-        attendees.append({'email': user.email})
+        attendees.append({'email': user.email , 'responseStatus' : 'accepted'})
     EVENT['attendees'] = attendees
     if kwargs['created']:
         e = CAL.events().insert(calendarId=os.environ['CALENDAR_ID'],
-                sendNotifications=True, body=EVENT).execute()
+                sendNotifications=False, body=EVENT).execute()
         event.eventId = e['id']
         event.save()
     else:
         CAL.events().update(calendarId=os.environ['CALENDAR_ID'], eventId=event.eventId,
-                sendNotifications=True, body=EVENT).execute()
+                sendNotifications=False, body=EVENT).execute()
                 
 @receiver(pre_delete, sender=Event)
 def model_pre_delete(sender, **kwargs):

@@ -46,6 +46,9 @@
                         <li><a data-toggle="tab" href="#calendar">Calendar</a></li>
                         <li><a data-toggle="tab" href="#about">About Us</a></li>
                         <li><a data-toggle="tab" href="#contact">Contact</a></li>
+                        {% if user and user.is_staff %}
+                            <li><a data-toggle="tab" href="#count">User Attendance Count</a></li>
+                        {% endif %}
                     </ul>
                 </div>
               <div id="banner"><img id="bannerImg" src="/static/events/images/ActionBanner.png"/></div>
@@ -57,7 +60,9 @@
                     {% block content %}{% endblock %}
                 </div>
                 <div id="calendar" class="tab-pane fade">
-                    <iframe src="https://calendar.google.com/calendar/embed?title=Events&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;height=600&amp;wkst=2&amp;bgcolor=%23ffffff&amp;src=k5nl2ku315dpep6c8ib0qolrl8%40group.calendar.google.com&amp;color=%2328754E&amp;ctz=America%2FNew_York" style="border:solid 1px #777" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+                     <div class="center">
+                         <iframe src="https://calendar.google.com/calendar/embed?title=Events&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;height=600&amp;wkst=2&amp;bgcolor=%23ffffff&amp;src=k5nl2ku315dpep6c8ib0qolrl8%40group.calendar.google.com&amp;color=%2328754E&amp;ctz=America%2FNew_York" style="border:solid 1px #777" width="100%" height="600" frameborder="0" scrolling="no"></iframe>
+                    </div>
                 </div>
                 <div id="about" class="tab-pane fade">
                     <p>{% lorem %}</p>
@@ -76,6 +81,30 @@
                         Room B218 <br/>
                     </p>
                     </address>
+                </div>
+                <div id="count" class="tab-pane fade">
+                    {% if user and user.is_staff %}
+                        <h2 class="center">User Attendance</h2>
+                        <div class="col-xs-12">
+                            <table class="table">
+                              <th><u>Number of events attended by users:</u></th>
+                                  {% for user in users %}
+                                    <tr>
+                                        <td>
+                                          {% if user.first_name and user.last_name %}
+                                          {{user.first_name}} {{user.last_name}}
+                                          {% else %}
+                                          {{user}}
+                                          {% endif %}
+                                        </td>
+                                        <td>
+                                            {{user.signed_up.count}}
+                                        </td>
+                                    </tr>
+                                  {% endfor %}
+                            </table> 
+                        </div>
+                    {% endif %}
                 </div>
             </div>
         </main>
