@@ -36,19 +36,12 @@
   <div class="row cards">
       {% for event in events_ %}
         {% if event.viewable %}
-          <div class="col-sm-6 col-md-4 col-xs-12 mon{{event.date.month}} card {% if event in user.event_set.all %}mine{% endif %}" data-href="detail/{{event.id}}">
+          <div class="col-sm-6 col-md-4 col-xs-12 mon{{event.date.month}} card {% if user in event.users %}mine{% endif %}" data-href="detail/{{event.id}}">
             <div class="panel panel-default">
-              <div class="panel-heading">
+              <div class="panel-heading home-event">
                 <h1 class="panel-title lg-title fixed-title"><a href="detail/{{event.id}}" style="text-decoration: underline">{{event.name}}</a></h1>
                 <h4 class="fixed-info" style="font-size:14px">{{event.time}} at {{event.place}} on {{event.date}}</h4>
-                {% if user and not user.is_anonymous %}
-                  {% if user in event.signed_up.all %}
-                     {% include "events/leave.html" with event=event user=user M="" %}
-                  {% else %}
-                    <div style="width:150px" class=".TxtArea{{event.id}} collapse in" id="vanish{{event.id}}" aria-expanded="true"><div class="btn btn-success" role="button" aria-label="Attend Event" data-toggle="collapse" data-target=".TxtArea{{event.id}}, #vanish{{event.id}}">Attend Event</div></div>
-                  {% endif %}
-                {% endif %}
-                    {% include "events/attend.html" with event=event user=user M="" %}
+                {% include "events/attendance.html" with event=event user=user date=date %}
               </div>
               <div class="panel-body fixed-panel">
                     {{event.desc}}

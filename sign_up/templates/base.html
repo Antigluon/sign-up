@@ -12,6 +12,8 @@
         <link rel="stylesheet" type="text/css" href="{% static 'events/style.css' %}"/>
         <script src="{% static 'events/main.js' %}"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" type="image/png" href="{% static 'events/favicon2.png' %}"/>
+
     </head>
     <body>
         <header  style="width:100%">
@@ -98,7 +100,13 @@
                                           {% endif %}
                                         </td>
                                         <td>
-                                            {{user.signed_up.count}}
+                                            {{counter.zero}}
+                                            {% for event in events_ %}
+                                                {% if user in event.attending %}
+                                                    {{counter.increment}}
+                                                {% endif %}
+                                            {% endfor %}
+                                            {{counter.get_count}}
                                         </td>
                                     </tr>
                                   {% endfor %}

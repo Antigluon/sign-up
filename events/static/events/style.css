@@ -91,3 +91,7 @@ ul.share-buttons img{
     width: 99%;
     padding: 10px;
 }
+
+.home-event {
+    min-height: 200px;
+}

@@ -12,8 +12,12 @@ class ImageInline(admin.TabularInline):
     model = Image
     extra = 0
 
+class AttendeeInline(admin.TabularInline):
+    model = Attendee
+    extra = 0
+
 class EventAdmin(admin.ModelAdmin):
-    inlines = [CommentInline, ImageInline]
+    inlines = [AttendeeInline, CommentInline, ImageInline]
     
 
 admin.site.register(Event, EventAdmin)

@@ -6,8 +6,8 @@
     <div class="panel-heading">
       <h1 class="panel-title lg-title fixed-info">{{event.name}}</h1>
       <h4>{{event.time}} at {{event.place}} on {{event.date}}</h4>
-      {% if user and not user.is_anonymous %}
-        {% if not user in event.signed_up.all %}
+      {% comment %}{% if user and not user.is_anonymous %}
+        {% if not user in event.users %}
           {% if event.signed_up.count < event.max_attendees %}
             <div style="width:150px" class=".TxtArea{{event.id}} collapse in" id="vanish{{event.id}}"><a href="#" class="btn btn-success" role="button" aria-label="Attend Event" data-toggle="collapse" data-target=".TxtArea{{event.id}}, #vanish{{event.id}}">Attend Event</a></div>
           {% else %}
@@ -20,8 +20,10 @@
             <!-- Request a sub buddon -->
           {% endif %}
         {% endif %}
-      {% endif %}
+      {% endif %} 
       {% include "events/attend.html" with event=event user=user %}
+      {% endcomment %}
+      {% include "events/attendance.html" with event=event user=user date=date %}
     </div>
     <div class="panel-body fixed-panel">
           {{event.desc}}
@@ -32,7 +34,7 @@
       <div class="col-xs-12">
         <table class="table">
           <th><u>Attending:</u></th>
-          {% for user in event.signed_up.all %}
+          {% for user in event.users %}
             <tr><td>
               {% if user.first_name and user.last_name %}
               {{user.first_name}} {{user.last_name}}

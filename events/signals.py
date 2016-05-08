@@ -32,7 +32,7 @@ def model_post_save(sender, **kwargs):
         'guestsCanInviteOthers': False
     }
     attendees = []
-    for user in event.signed_up.all():
+    for user in event.users():
         attendees.append({'email': user.email , 'responseStatus' : 'accepted'})
     EVENT['attendees'] = attendees
     if kwargs['created']:

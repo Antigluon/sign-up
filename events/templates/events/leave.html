@@ -1,6 +1,6 @@
 {% comment %} # requires context: event, M(obile) and user {% endcomment %}
 
-<div style="width:150px"><a href="#" class="btn btn-danger" role="button" aria-label="Not Attending" data-toggle="modal" data-target="#ModalUnattend{{M}}{{event.id}}">Not Attending</a></div>
+{# <div style="width:150px"><a href="#" class="btn btn-danger" role="button" aria-label="Not Attending" data-toggle="modal" data-target="#ModalUnattend{{M}}{{event.id}}">Not Attending</a></div> #}
 <div class="modal fade" id="ModalUnattend{{M}}{{event.id}}" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -9,7 +9,7 @@
               <h3 class="modal-title" style="color:#CCCCCC">Leave Event</h4>
             </div>
             <div class="modal-body">
-                <p style="color:black">Are you sure you wish to leave this event? <strong>This cannot easily be undone.</strong></p>
+                <p style="color:black">Are you sure you wish to leave this event?</p>
             </div>
             <div class="modal-footer">
                 <form action="{% url 'events:leaveEvent' %}" method="POST">
