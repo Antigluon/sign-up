@@ -1,0 +1,45 @@
+Searching for signed_up in/ (Found 21 matches in 10 files)
+
+/events/models.py:
+	43:     event = models.ForeignKey(Event, related_name="signed_up")
+
+/events/signals.py:
+	35:     for user in event.signed_up.all():
+
+/events/views.py:
+	13:     context['users'] = User.objects.all().annotate(count=Count('signed_up')).order_by('-count')
+	37:         event.signed_up.remove(replaced)
+	41:     elif event.signed_up.count() < event.max_attendees:
+	43:         event.signed_up.add(user)
+	57:     if user in event.signed_up.all():
+	58:         event.signed_up.remove(user)
+
+/events/management/commands/notify.py:
+	14:             for user in event.signed_up.all():
+
+/events/migrations/0001_initial.py:
+	31:                 ('signed_up', models.ManyToManyField(to=settings.AUTH_USER_MODEL, blank=True)),
+
+/events/migrations/0004_auto_20160404_1648.py:
+	17:             name='signed_up',
+	18:             field=models.ManyToManyField(to=settings.AUTH_USER_MODEL, blank=True, related_name='signed_up'),
+
+/events/templates/events/attendance.html:
+	5:         {% if not user in event.signed_up.all %}
+	6:           {% if event.signed_up.count < event.max_attendees %}
+	13:       {% if event.signed_up.count > event.min_attendees or not event.locked %}
+
+/events/templates/events/detail.html:
+	10:         {% if not user in event.signed_up.all %}
+	11:           {% if event.signed_up.count < event.max_attendees %}
+	17:           {% if event.signed_up.count > event.min_attendees or not event.locked %}
+	35:           {% for user in event.signed_up.all %}
+
+/sign_up/templates/base.html:
+	101:                                             {{user.signed_up.count}}
+
+/sign_up/templates/home.html:
+	45:                   {% if user in event.signed_up.all %}
+
+Found 21 matches in 10 files 
+
