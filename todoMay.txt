@@ -1,4 +1,4 @@
-ACTION meeting time - unknown, presumed to be week of the 9th or maybe not
+ACTION meeting time - Wed. May 11
 In priority order:
 
 Make max attendees work again #MakeMaxAttendeesWorkAgain - Done

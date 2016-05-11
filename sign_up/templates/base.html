@@ -39,7 +39,6 @@
                             <li><a href="{% url 'auth:logout' %}?next=/">Log Out</a></li>
                         {% else %}
                             <li><a href="{% url 'auth:login' %}"><span class="glyphicon glyphicon-user"></span> Sign in</a></li>
-                            <li><span><a href="{% url 'social:begin' 'facebook' %}?next={{ request.build_absolute_uri }}{{ object.get_absolute_url }}" class="btn btn-block btn-social btn-facebook"><i class="fa fa-facebook"></i>Sign in with Facebook</a></span></li>
                             <li><span><a href="{% url 'social:begin' 'google-oauth2' %}?next={{ request.build_absolute_uri }}{{ object.get_absolute_url }}" class="btn btn-block btn-social btn-google"><i class="fa fa-google"></i>Sign in with Google</a></span></li>
                         {% endif %}
                     </ul>
