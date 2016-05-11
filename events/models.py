@@ -34,12 +34,13 @@ class Event(models.Model):
             return self.users()
     
     def leaving(self):
-        leaving = []
-        for attendee in self.signed_up():
+        leavings = []
+        for attendee in self.signed_up.all():
             if attendee.leaving:
-                leaving.append(attendee.user)
-        return leaving
+                leavings.append(attendee.user)
+        return leavings
         
+
     def __str__(self):
         return str(self.name)
         

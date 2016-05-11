@@ -99,6 +99,7 @@ def unQueueLeave(request):
     attendee = event.signed_up.get(user=user)
     if attendee.leaving:
         attendee.leaving = False
+        attendee.save()
     return HttpResponseRedirect(reverse("events:index"))
 
 def subwaySandwiches(request):

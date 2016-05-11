@@ -1,0 +1,8 @@
+{% comment %} # requires context: event and user {% endcomment %}
+
+<form action="{% url 'events:unQueueLeave' %}" method="POST">
+    {% csrf_token %}
+    <input type="hidden" name="user" value="{{user.id}}"/>
+    <input type="hidden" name="event_" value="{{event.id}}"/>
+    <input type="submit" style="inline" class="btn btn-info" aria-label="Unqueue Leaving" value="Unqueue Leaving"/>
+</form>    

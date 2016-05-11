@@ -1,18 +1,13 @@
-ACTION meeting time - unknown, presumed to be week of the 9th
+ACTION meeting time - unknown, presumed to be week of the 9th or maybe not
 In priority order:
 
 Make max attendees work again #MakeMaxAttendeesWorkAgain - Done
 
-Make buttons for attendance.html for all sub states - Not Done
+Make buttons for attendance.html for all sub states - Done
     Request a replacement - Done
-    No longer need to leave - Not Done
+    No longer need to leave - Done
     Join as sub - Done
     Leave substitute list - Done
-
-Images to events on homepage - No Thanks
-    primary image, if too difficult 1st image
-    possibly could show all events with show on homepage checked, but takes up too much space
-    image modal?
 
 Email notifications upon someone dropping into or out of an event due to someone leaving/joining - Done
 
