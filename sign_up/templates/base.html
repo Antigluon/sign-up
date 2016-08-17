@@ -17,7 +17,7 @@
     </head>
     <body>
         <header  style="width:100%">
-            <nav role="navigation" class="navbar navbar-inverse">
+            <nav role="navigation" class="navbar navbar-inverse navbar-fixed-top">
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
                     <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
@@ -38,24 +38,25 @@
                             {% endif %}
                             <li><a href="{% url 'auth:logout' %}?next=/">Log Out</a></li>
                         {% else %}
-                            <li><a href="{% url 'auth:login' %}"><span class="glyphicon glyphicon-user"></span> Sign in</a></li>
                             <li><span><a href="{% url 'social:begin' 'google-oauth2' %}?next={{ request.build_absolute_uri }}{{ object.get_absolute_url }}" class="btn btn-block btn-social btn-google"><i class="fa fa-google"></i>Sign in with Google</a></span></li>
                         {% endif %}
                     </ul>
                     <ul class="nav navbar-nav nav-tabs navbar-&#x2192;">
                         <li class="active"><a data-toggle="tab" href="#home"><strong>{% block pagename %}{% endblock %}</strong></a></li>
                         <li><a data-toggle="tab" href="#calendar">Calendar</a></li>
+                        <!-- <li><a href="{% url 'events:photos' %}">Photos</a></li> -->
+                        {% if user and user.is_staff %}
+                            <li><a data-toggle="tab" href="#count">Attendance</a></li>
+                        {% endif %}
+                        <li><a data-toggle="tab" href="#photos">Photos</a></li>
                         <li><a data-toggle="tab" href="#about">About Us</a></li>
                         <li><a data-toggle="tab" href="#contact">Contact</a></li>
-                        {% if user and user.is_staff %}
-                            <li><a data-toggle="tab" href="#count">User Attendance Count</a></li>
-                        {% endif %}
                     </ul>
                 </div>
-              <div id="banner"><img id="bannerImg" src="/static/events/images/ActionBanner.png"/></div>
-            </nav>
+             </nav>
         </header>
         <main class="container-fluid">
+            <div id="banner"><img id="bannerImg" src="/static/events/images/ActionBanner.png"/></div>
             <div class="tab-content">
                 <div id="home" class="tab-pane fade in active">
                     {% block content %}{% endblock %}
@@ -92,11 +93,7 @@
                                   {% for user in users %}
                                     <tr>
                                         <td>
-                                          {% if user.first_name and user.last_name %}
-                                          {{user.first_name}} {{user.last_name}}
-                                          {% else %}
-                                          {{user}}
-                                          {% endif %}
+                                          {{user.get_full_name}}
                                         </td>
                                         <td>
                                             {{counter.zero}}
@@ -107,11 +104,48 @@
                                             {% endfor %}
                                             {{counter.get_count}}
                                         </td>
+                                        <td><p>
+                                            {% if user.is_staff %}
+                                                {{counter.zero}}
+                                                {% for event in events_ %}
+                                                    {% if user in event.captain_list %}
+                                                        {{counter.increment}}
+                                                    {% endif %}
+                                                {% endfor %}
+                                                Events Captained:
+                                                <td>{{counter.get_count}}</td>
+                                            {% else %}
+                                            Not a Captain
+                                            <td></td>
+                                            {% endif %}
+                                        <p></td>
+                                        <td><p>Events missed:</p></td>
+                                        <td>
+                                            {{counter.zero}}
+                                            {% for event in events_ %}
+                                                {% if user in event.missed %}
+                                                    {{counter.increment}}
+                                                {% endif %}
+                                            {% endfor %}
+                                            {{counter.get_count}}
+                                            
+                                        </td>
                                     </tr>
                                   {% endfor %}
                             </table> 
                         </div>
                     {% endif %}
+                </div>
+                <div id="photos" class="tab-pane fade">
+                    {% for event in events_ %}
+                        {% for image in event.image_set.all %}
+                          <div class = "col-xs-12 col-sm-6 col-md-4">
+                            <h3 class="fixed-info">{{event.name}}</h3>
+                            <img src="{{image.image.url}}" class="detImg"/>
+                            <h4 class="fixed-info">{{image.caption}}</h4>
+                          </div>
+                        {% endfor %}
+                    {% endfor %}
                 </div>
             </div>
         </main>

@@ -34,7 +34,7 @@
       <div class="col-xs-12">
         <table class="table">
           <th><u>Attending:</u></th>
-          {% for user in event.users %}
+          {% for user in event.attending %}
             <tr><td>
               {% if user.first_name and user.last_name %}
               {{user.first_name}} {{user.last_name}}

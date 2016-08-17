@@ -1,0 +1,19 @@
+Available Domains:
+okemosaction.* -- $1 / month
+
+Digital ocean - Server and hosting(-)
+    $5 / month
+    (+ Domain)
+    + Easier to deal w/ images
+    + Cheaper
+    -Harder maintenance
+    - Required Setup
+    - Setup own DB
+    
+Heroku server, Amazon S3 hosting (-)(better if willing to pay extra $2/month)
+    $7+ /month
+    (+ Domain)
+    + Easier maintenance
+    - More expensive
+    - Django for production
+    

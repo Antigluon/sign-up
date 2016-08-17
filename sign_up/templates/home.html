@@ -40,7 +40,8 @@
             <div class="panel panel-default">
               <div class="panel-heading home-event">
                 <h1 class="panel-title lg-title fixed-title"><a href="detail/{{event.id}}" style="text-decoration: underline">{{event.name}}</a></h1>
-                <h4 class="fixed-info" style="font-size:14px">{{event.time}} at {{event.place}} on {{event.date}}</h4>
+                <h4 class="fixed-info" style="font-size:14px">{{event.time}} at {{event.place}} on {{event.date}} <br/>
+                Captained by: {{event.disp_captains}}</h4>
                 {% include "events/attendance.html" with event=event user=user date=date %}
               </div>
               <div class="panel-body fixed-panel">
