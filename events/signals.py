@@ -6,6 +6,7 @@ from .models import Event
 from apiclient.discovery import build
 from sign_up.settings import *
 import os.path
+import os
 from apiclient.discovery import build
 from httplib2 import Http
 from oauth2client import file, client, tools
@@ -13,7 +14,11 @@ from oauth2client.service_account import ServiceAccountCredentials
 
 def get_cal():
     scopes = ['https://www.googleapis.com/auth/calendar']
-    credentials = ServiceAccountCredentials.from_json_keyfile_name('/home/ubuntu/workspace/Okemos Action-7e118ff1217e.json', scopes)
+    olddir = os.getcwd()
+    os.chdir("..")
+    credentials = ServiceAccountCredentials.from_json_keyfile_name('/home/jainil/oaction/sign-up/Okemos Action-7e118ff1217e.json', scopes)
+    print(credentials)
+    os.chdir(olddir)
     #credentials = ServiceAccountCredentials.from_json(os.environ['GOOGLE_API']).create_scoped(scopes)
     http_auth = credentials.authorize(Http())
     CAL = build('calendar', 'v3', http=http_auth)
