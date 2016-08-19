@@ -9,5 +9,5 @@ urlpatterns = patterns('',
     url('', include('social.apps.django_app.urls', namespace='social')),
     url('', include('django.contrib.auth.urls', namespace='auth')),
     url('', include('events.urls', namespace = "events")),
-    url('^register/', views.register, name = 'register'),
+    #url('^register/', views.register, name = 'register'),
 )  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
