@@ -58,7 +58,7 @@
                         {% if user and user.is_staff %}
                             <li><a data-toggle="tab" href="#count">Attendance</a></li>
                         {% endif %}
-                        <li><a data-toggle="tab" href="#photos">Photos</a></li>
+                        <li><a href="{%url 'events:photos' %}">Photos</a></li>
                         <li><a data-toggle="tab" href="#about">About Us</a></li>
                         <li><a data-toggle="tab" href="#contact">Contact</a></li>
                     </ul>
@@ -146,7 +146,7 @@
                         </div>
                     {% endif %}
                 </div>
-                <div id="photos" class="tab-pane fade">
+                <!--<div id="photos" class="tab-pane fade">
                     {% for event in events_ %}
                         {% for image in event.image_set.all %}
                           <div class = "col-xs-12 col-sm-6 col-md-4">
@@ -156,7 +156,7 @@
                           </div>
                         {% endfor %}
                     {% endfor %}
-                </div>
+                </div>-->
             </div>
         </main>
         <footer>
