@@ -39,6 +39,9 @@ def getContext(context={}):
 
 def index(request):
     return render(request, 'home.html', getContext())
+    
+def photos(request):
+    return render(request, 'photos.html', getContext())
 
 class DetailView(generic.DetailView):
     model = Event
@@ -58,7 +61,8 @@ def attendEvent(request):
         print("Something's fishy")
         return HttpResponseRedirect("google.com")
     info = request.POST['info']
-    if datetime.date.today() < event.date:
+    if (datetime.date.today() < event.date) and not (user in [attendee.user for attendee in event.signed_up.all()]):
+        #print([attendee.user for attendee in event.signed_up.all()])
         a = Attendee(event=event,user=user)
         event.signed_up.add(a)
         thoseLeaving = event.signed_up.filter(leaving=True).order_by('datetime_attended')
@@ -70,6 +74,7 @@ def attendEvent(request):
         if info and not info.isspace():
             c = Comment(user=user,event=event,text=(info))
             c.save()
+            
         event.save()
         #print(eventID)
     return HttpResponseRedirect(reverse("events:detail",kwargs={"pk":eventID}))
@@ -111,7 +116,7 @@ def unQueueLeave(request):
         attendee.save()
     return HttpResponseRedirect(reverse("events:index"))
     
-def photos(request):
-    context = getContext()
-    context['images'] = GalleryImage.objects.all()
-    return render(request, 'events/photos.html', context)
+#def photos(request):
+#    context = getContext()
+#    context['images'] = GalleryImage.objects.all()
+#    return render(request, 'events/photos.html', context)

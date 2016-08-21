@@ -14,11 +14,11 @@ from oauth2client.service_account import ServiceAccountCredentials
 
 def get_cal():
     scopes = ['https://www.googleapis.com/auth/calendar']
-    olddir = os.getcwd()
-    os.chdir("..")
-    credentials = ServiceAccountCredentials.from_json_keyfile_name('/home/jainil/oaction/sign-up/Okemos Action-7e118ff1217e.json', scopes)
-    print(credentials)
-    os.chdir(olddir)
+    #olddir = os.getcwd()
+    #os.chdir("..")
+    credentials = ServiceAccountCredentials.from_json_keyfile_name(os.environ['CRED_PATH'], scopes)
+    #print(credentials)
+    #os.chdir(olddir)
     #credentials = ServiceAccountCredentials.from_json(os.environ['GOOGLE_API']).create_scoped(scopes)
     http_auth = credentials.authorize(Http())
     CAL = build('calendar', 'v3', http=http_auth)

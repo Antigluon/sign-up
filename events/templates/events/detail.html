@@ -6,23 +6,23 @@
     <div class="panel-heading">
       <h1 class="panel-title lg-title fixed-info">{{event.name}}</h1>
       <h4>{{event.time}} at {{event.place}} on {{event.date}}</h4>
-      {% comment %}{% if user and not user.is_anonymous %}
+      <!--{% comment %}{% if user and not user.is_anonymous %}
         {% if not user in event.users %}
           {% if event.signed_up.count < event.max_attendees %}
             <div style="width:150px" class=".TxtArea{{event.id}} collapse in" id="vanish{{event.id}}"><a href="#" class="btn btn-success" role="button" aria-label="Attend Event" data-toggle="collapse" data-target=".TxtArea{{event.id}}, #vanish{{event.id}}">Attend Event</a></div>
           {% else %}
-            <!-- Add to sub waitlist buddon -->
+            <!-- Add to sub waitlist buddon --><!--
           {% endif %}  
         {% else %}
           {% if event.signed_up.count > event.min_attendees or not event.locked %}
             {% include 'events/leave.html' with event=event user=user %}
           {% else %}
-            <!-- Request a sub buddon -->
+            <!-- Request a sub buddon --><!--
           {% endif %}
         {% endif %}
       {% endif %} 
       {% include "events/attend.html" with event=event user=user %}
-      {% endcomment %}
+      {% endcomment %} -->
       {% include "events/attendance.html" with event=event user=user date=date %}
     </div>
     <div class="panel-body fixed-panel">
