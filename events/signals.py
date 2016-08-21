@@ -57,5 +57,5 @@ def model_pre_delete(sender, **kwargs):
         CAL.events().delete(calendarId=os.environ['CALENDAR_ID'], eventId=event.eventId,
                 sendNotifications=True).execute()
     except:
-        print("Tried to delte calendar events but got errors")
+        print("Tried to delete calendar events but got errors")
     
