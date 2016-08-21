@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %} Photos {% endblock %}
+{% block pagename %} Photos {% endblock %}
+
+{% block content %}
+{% for event in events_ %}
+    {% for image in event.image_set.all %}
+      <div class = "col-xs-12 col-sm-6 col-md-4">
+        <h3 class="fixed-info">{{event.name}}</h3>
+        <img src="{{image.image.url}}" class="detImg"/>
+        <h4 class="fixed-info">{{image.caption}}</h4>
+      </div>
+    {% endfor %}
+{% endfor %}
+{% endblock %}
