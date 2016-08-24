@@ -64,7 +64,7 @@ def attendEvent(request):
     if (datetime.date.today() < event.date) and not (user in [attendee.user for attendee in event.signed_up.all()]):
         #print([attendee.user for attendee in event.signed_up.all()])
         a = Attendee(event=event,user=user)
-        #a.save()
+        a.save()
         event.signed_up.add(a)
         thoseLeaving = event.signed_up.filter(leaving=True).order_by('datetime_attended')
         if len(event.users()) > event.min_attendees and thoseLeaving:
