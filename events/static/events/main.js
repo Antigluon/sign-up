@@ -30,7 +30,7 @@
       $( ".mon8" ).show(); 
     });
     $( ".month-search9" ).click(function(){
-      $( ".mon9" ).show(); 
+      $( ".mon9" ).show();  
     });
     $( ".month-search10" ).click(function(){
       $( ".mon10" ).show(); 
