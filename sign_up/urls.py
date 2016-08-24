@@ -11,3 +11,7 @@ urlpatterns = [
     url('', include('events.urls', namespace = "events")),
     #url('^register/', views.register, name = 'register'),
 ]  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+admin.site.site_header = 'ACTION Administration'
+admin.site.site_title = 'ACTION Administration'
+admin.site.index_title = 'ACTION Administration'
+
