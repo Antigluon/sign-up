@@ -2,7 +2,8 @@ from django.contrib import admin
 from django.contrib.auth.models import Group
 from .models import *
 from django.contrib.auth.models import User
-
+from django.contrib.auth.admin import UserAdmin
+from copy import deepcopy
 
 # Register your models here.
 class NiceUserInline(admin.TabularInline):
@@ -57,5 +58,25 @@ class EventAdmin(admin.ModelAdmin):
     
 
 admin.site.register(Event, EventAdmin)
+class SafeUserAdmin(UserAdmin):
 
+    def get_fieldsets(self, request, obj=None):
+        fieldsets = super(UserAdmin, self).get_fieldsets(request, obj)
+        if not obj:
+            return fieldsets
+
+        if not request.user.is_superuser or request.user.pk == obj.pk:
+            fieldsets = deepcopy(fieldsets)
+            for fieldset in fieldsets:
+                if 'is_superuser' in fieldset[1]['fields']:
+                    if type(fieldset[1]['fields']) == tuple :
+                        fieldset[1]['fields'] = list(fieldset[1]['fields'])
+                    fieldset[1]['fields'].remove('is_superuser')
+                    if not user.is_superuser:
+                        fieldset[1]['fields'].remove('user_permissions')
+                    break
+
+        return fieldsets
 #admin.site.register(GalleryImage)
+admin.site.unregister(User)
+admin.site.register(User, SafeUserAdmin)
