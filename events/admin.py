@@ -72,7 +72,7 @@ class SafeUserAdmin(UserAdmin):
                     if type(fieldset[1]['fields']) == tuple :
                         fieldset[1]['fields'] = list(fieldset[1]['fields'])
                     fieldset[1]['fields'].remove('is_superuser')
-                    if not user.is_superuser:
+                    if not request.user.is_superuser:
                         fieldset[1]['fields'].remove('user_permissions')
                     break
 
