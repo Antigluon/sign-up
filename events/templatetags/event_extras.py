@@ -7,3 +7,7 @@ register = template.Library()
 def has_group(user, group_name):
     group =  Group.objects.get(name=group_name) 
     return group in user.groups.all() 
+    
+@register.filter(name='is_k12') 
+def is_k12(user):
+    return "@okemosk12.net" in user.email
