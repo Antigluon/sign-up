@@ -8,5 +8,6 @@ urlpatterns = [
     url(r'^attendEvent/$', views.attendEvent, name="attendEvent"),
     url(r'^leaveEvent/$', views.leaveEvent, name="leaveEvent"),
     url(r'^unQueueLeave/$', views.unQueueLeave, name="unQueueLeave"),
-    url(r'^photos/$', views.photos, name="photos")
+    url(r'^photos/$', views.photos, name="photos"),
+    url(r'^loginerror/$', views.loginerror, name="loginerror")
 ] 

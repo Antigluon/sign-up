@@ -117,6 +117,9 @@ def unQueueLeave(request):
         attendee.save()
     return HttpResponseRedirect(reverse("events:index"))
     
+def loginerror(request):
+    return render(request, 'events/loginerror.html', getContext())
+
 #def photos(request):
 #    context = getContext()
 #    context['images'] = GalleryImage.objects.all()
