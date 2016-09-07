@@ -45,6 +45,7 @@
                         {% if user and not user.is_anonymous %}
                             <li><a href="#!">Welcome, {{ user.get_full_name|default:user.username }}!</a></li>
                             {% if user and user.is_staff %}
+                                <li><a href="/admin/events/event/add/">Add Event</a></li>
                                 <li><a href="/admin">Staff Page</a></li>
                             {% endif %}
                             <li><a href="{% url 'auth:logout' %}?next=/">Log Out</a></li>
