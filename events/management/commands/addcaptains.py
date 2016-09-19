@@ -2,11 +2,12 @@ from django.core.management.base import BaseCommand, CommandError
 from events.models import *
 from django.utils import formats
 from django.contrib.auth.models import User, Group
+import os
 
-emailFile = open("/home/ubuntu/workspace/events/management/commands/rawEmails.txt")
+emailFile = open("events/management/commands/rawEmails.txt")
 rawEmails = emailFile.read()
 captainEmails = rawEmails.split(' ')
-print(captainEmails)
+#print(captainEmails)
 emailFile.close()
 
 class Command(BaseCommand):
