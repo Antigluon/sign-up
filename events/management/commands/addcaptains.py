@@ -16,7 +16,10 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         captains = User.objects.filter(email__in=captainEmails)
         captains.update(is_staff=True)
+        updated = []
         for captain in captains:
+            if not captain.groups.filter(name="Captains").exists():
+                updated.append(captain)
             captain.groups.add(Group.objects.get(name="Captains"))
             captain.save()
         #print(captains) 
