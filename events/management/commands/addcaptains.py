@@ -7,7 +7,7 @@ import os
 emailFile = open("events/management/commands/rawEmails.txt")
 rawEmails = emailFile.read()
 captainEmails = rawEmails.split(' ')
-print(captainEmails)
+#print(captainEmails)
 emailFile.close()
 
 class Command(BaseCommand):
@@ -19,5 +19,5 @@ class Command(BaseCommand):
         for captain in captains:
             captain.groups.add(Group.objects.get(name="Captains"))
             captain.save()
-        print(captains)
+        #print(captains)
         
