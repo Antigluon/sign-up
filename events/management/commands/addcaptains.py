@@ -19,5 +19,5 @@ class Command(BaseCommand):
         for captain in captains:
             captain.groups.add(Group.objects.get(name="Captains"))
             captain.save()
-        #print(captains)
+        #print(captains) 
         
