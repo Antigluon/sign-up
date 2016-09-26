@@ -31,7 +31,7 @@ class Counter:
         return self.count
         
 def getContext(context={}):
-    context['events_'] = Event.objects.all().order_by('date')
+    context['events_'] = Event.objects.all().order_by('-date')
     context['users'] = User.objects.annotate(count=Count('attendee')).order_by('-count')
     context['counter'] = Counter()
     context['date'] = datetime.date.today()
