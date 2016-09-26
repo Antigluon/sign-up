@@ -7,7 +7,7 @@ import os
 emailFile = open("events/management/commands/rawEmails.txt")
 rawEmails = emailFile.read()
 captainEmails = rawEmails.split(' ')
-#print(captainEmails)
+print(captainEmails)
 emailFile.close()
 
 class Command(BaseCommand):
